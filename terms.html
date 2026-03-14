@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms and Conditions | Tech Neighbour BC</title>
+  <meta name="description" content="Terms and conditions for Tech Neighbour BC in-home and remote tech support services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:     #1D4ED8;
+      --blue-lt:  #EFF6FF;
+      --blue-dk:  #1E3A8A;
+      --text:     #1F2937;
+      --text-sm:  #6B7280;
+      --border:   #E5E7EB;
+      --bg-alt:   #F9FAFB;
+      --white:    #FFFFFF;
+      --radius:   10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-dk) !important; color: var(--white) !important; }
+
+    /* CONTENT */
+    .page-header {
+      background: var(--bg-alt);
+      padding: 56px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header .container { max-width: 760px; margin: 0 auto; }
+    .page-header p { color: var(--text-sm); font-size: 0.95rem; margin-top: 8px; }
+
+    .terms-body {
+      padding: 56px 24px;
+    }
+    .terms-body .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .terms-section {
+      margin-bottom: 40px;
+    }
+    .terms-section h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .terms-section p {
+      color: var(--text-sm);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .terms-section p:last-child { margin-bottom: 0; }
+    .terms-section ul {
+      margin: 8px 0 12px 20px;
+      color: var(--text-sm);
+      font-size: 0.95rem;
+    }
+    .terms-section ul li { margin-bottom: 6px; }
+
+    h1 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; line-height: 1.25; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: #9CA3AF;
+      padding: 36px 24px;
+      font-size: 0.875rem;
+      text-align: center;
+    }
+    footer a { color: #9CA3AF; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .footer-logo { color: var(--white); font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tech Neighbour BC</a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="pricing.html#about">About</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get Help</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <h1>Terms and Conditions</h1>
+    <p>Last updated: March 2026. These terms apply to all services provided by Tech Neighbour BC.</p>
+  </div>
+</div>
+
+<!-- TERMS BODY -->
+<div class="terms-body">
+  <div class="container">
+
+    <div class="terms-section">
+      <h2>1. Services</h2>
+      <p>We provide residential IT support services as listed in our service menu. Services are performed in-person at your location or remotely via screen sharing, depending on the nature of the issue and mutual agreement.</p>
+      <p>We reserve the right to assess any request and determine whether it falls within our scope of services. Out-of-scope requests may be quoted on a case-by-case basis.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>2. No Fix, No Fee</h2>
+      <p>We operate on a no fix, no fee basis for the following service types:</p>
+      <ul>
+        <li>Virus and malware removal</li>
+        <li>General diagnostics and troubleshooting</li>
+        <li>Account recovery</li>
+      </ul>
+      <p>No fix, no fee does not apply in the following situations:</p>
+      <ul>
+        <li>Hardware failure or physical damage beyond repair</li>
+        <li>Issues caused by third-party software or services outside our control</li>
+        <li>Devices that are end-of-life or incompatible with the requested solution</li>
+        <li>Cases where the client declines a recommended course of action that would resolve the issue</li>
+      </ul>
+      <p>If we determine mid-visit that a fix is not possible, we will inform you immediately and no charge will be applied for that visit.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>3. Pricing and Payment</h2>
+      <ul>
+        <li>A minimum call-out fee of $50 CAD applies to all in-person visits, covering the first 30 minutes of service.</li>
+        <li>Additional time is billed at $65 CAD/hr, in 30-minute increments.</li>
+        <li>Remote support is billed at a minimum of $30 CAD for the first 30 minutes, then $50 CAD/hr after.</li>
+        <li>Flat-rate services are priced as listed in our service menu and quoted before work begins.</li>
+        <li>Payment is due at the time of service completion via Interac e-Transfer or PayPal.</li>
+        <li>A travel fee may apply for visits in distant areas of the Lower Mainland.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h2>4. Cancellations and No-Shows</h2>
+      <p>Please provide at least 24 hours notice to cancel or reschedule a scheduled visit.</p>
+      <p>No-shows or cancellations with less than 2 hours notice may be subject to a $25 CAD cancellation fee.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>5. Liability</h2>
+      <p>We take reasonable care when handling your devices and data.</p>
+      <p>We are not liable for pre-existing hardware issues, data loss, or damage unrelated to our work.</p>
+      <p>We strongly recommend backing up your data before any service visit. If you do not have a backup, we will inform you of this risk before proceeding.</p>
+      <p>Our total liability in any situation is limited to the amount paid for the specific service in question.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>6. Privacy and Data</h2>
+      <p>We may need to access your device, files, or accounts to perform the requested service.</p>
+      <p>We will not access, copy, store, or share any personal data beyond what is necessary to complete the service.</p>
+      <p>We do not retain any login credentials or personal information after a service visit is complete.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>7. Remote Support</h2>
+      <p>Remote support sessions require you to download and run a screen-sharing application (such as AnyDesk or similar).</p>
+      <p>You may end the remote session at any time.</p>
+      <p>We will not access your device outside of scheduled and agreed-upon sessions.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>8. Right to Refuse Service</h2>
+      <p>We reserve the right to refuse or discontinue service at our discretion, including situations involving unsafe conditions, abusive conduct, or requests that are illegal or outside our capabilities.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>9. Changes to These Terms</h2>
+      <p>We may update these terms from time to time. Continued use of our services after changes are posted constitutes acceptance of the updated terms.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2>Contact</h2>
+      <p>Tech Neighbour BC</p>
+      <p>Email: <a href="mailto:techneighbourbc@gmail.com" style="color: var(--blue);">techneighbourbc@gmail.com</a></p>
+      <p>Serving the Lower Mainland, BC</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Tech Neighbour BC</div>
+    <span>Serving the Lower Mainland, BC</span>
+    <span>
+      <a href="mailto:techneighbourbc@gmail.com">techneighbourbc@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+    <span style="margin-top: 8px;">© 2026 Tech Neighbour BC. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
