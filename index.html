@@ -26,7 +26,6 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
       font-size: 17px;
@@ -53,16 +52,16 @@
       height: 64px;
     }
     .nav-logo {
-      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--blue);
       text-decoration: none;
     }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
+    .nav-logo svg { flex-shrink: 0; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
       text-decoration: none;
       color: var(--text);
@@ -78,7 +77,7 @@
       border-radius: 6px;
       transition: background 0.2s !important;
     }
-    .nav-cta:hover { background: var(--blue-dk) !important; color: var(--white) !important; }
+    .nav-cta:hover { background: var(--blue-dk) !important; }
 
     /* SECTIONS */
     section { padding: 72px 24px; }
@@ -133,11 +132,7 @@
     }
     .btn-primary { background: var(--blue); color: var(--white); }
     .btn-primary:hover { background: var(--blue-dk); }
-    .btn-outline {
-      background: transparent;
-      color: var(--blue);
-      border: 2px solid var(--blue);
-    }
+    .btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
     .btn-outline:hover { background: var(--blue-lt); }
 
     /* TRUST STRIP */
@@ -152,13 +147,10 @@
     }
     .trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .trust-icon {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       background: var(--blue-lt);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
     .trust-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .trust-item strong { font-size: 0.95rem; font-weight: 600; }
@@ -177,20 +169,26 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      cursor: pointer;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+      position: relative;
     }
-    .service-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); border-color: var(--blue); }
+    .service-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .service-card.no-modal { cursor: default; }
+    .service-card.no-modal:hover { transform: none; }
     .service-icon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: var(--blue-lt);
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin-bottom: 14px;
     }
     .service-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card h3 { margin-bottom: 6px; }
     .service-card p { font-size: 0.9rem; color: var(--text-sm); }
     .nff-tag {
       display: inline-block;
@@ -202,15 +200,25 @@
       border-radius: 999px;
       margin-top: 8px;
     }
-    .out-of-scope {
+    .card-hint {
+      font-size: 0.78rem;
+      color: var(--blue);
+      font-weight: 500;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .maintenance-box {
       margin-top: 28px;
-      padding: 18px 24px;
+      padding: 20px 24px;
       background: var(--blue-lt);
+      border: 1px solid #BFDBFE;
       border-radius: var(--radius);
       font-size: 0.95rem;
       color: var(--text);
     }
-    .out-of-scope strong { color: var(--blue); }
+    .maintenance-box strong { color: var(--blue); }
 
     /* CONTACT */
     #contact { background: var(--bg-alt); }
@@ -222,17 +230,10 @@
       align-items: start;
     }
     .contact-info p { font-size: 0.95rem; color: var(--text-sm); margin-bottom: 20px; }
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      font-size: 0.95rem;
-    }
+    .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 0.95rem; }
     .contact-detail svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
     .contact-detail a { color: var(--text); text-decoration: none; }
     .contact-detail a:hover { color: var(--blue); }
-
     form { display: flex; flex-direction: column; gap: 16px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text); }
@@ -269,6 +270,95 @@
     }
     .btn-submit:hover { background: var(--blue-dk); }
 
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 14px;
+      max-width: 520px;
+      width: 100%;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: modalIn 0.2s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      border: none;
+      background: var(--bg-alt);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text-sm);
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-lt);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .modal-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .modal h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .modal-desc { color: var(--text-sm); font-size: 0.95rem; margin-bottom: 16px; }
+    .modal-includes { list-style: none; margin-bottom: 20px; }
+    .modal-includes li {
+      font-size: 0.9rem;
+      color: var(--text-sm);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .modal-includes li:last-child { border-bottom: none; }
+    .modal-includes li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .modal-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .modal-price span { font-size: 0.85rem; font-weight: 400; color: var(--text-sm); }
+    .modal-nff { font-size: 0.8rem; font-weight: 600; color: var(--green); background: var(--green-lt); padding: 3px 10px; border-radius: 999px; }
+    .modal-cta {
+      background: var(--blue);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .modal-cta:hover { background: var(--blue-dk); }
+
     /* FOOTER */
     footer {
       background: var(--text);
@@ -288,6 +378,7 @@
       .nav-links { display: none; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
+      .modal { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -296,9 +387,17 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Tech Neighbour BC</a>
+    <a href="index.html" class="nav-logo">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 3L2 12.5V27H11V18.5H19V27H28V12.5L15 3Z" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M12.5 22.5a3.5 3.5 0 0 1 5 0" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M10.5 20.5a6.5 6.5 0 0 1 9 0" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" opacity="0.4"/>
+        <circle cx="15" cy="25" r="1.4" fill="#1D4ED8"/>
+      </svg>
+      Tech Neighbour BC
+    </a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="pricing.html#about">About</a></li>
       <li><a href="#contact" class="nav-cta">Get Help</a></li>
@@ -314,7 +413,7 @@
     <p>Friendly, patient, in-home tech support across the Lower Mainland. We fix the problem and explain it in plain language. No jargon, no confusion.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Send a Request</a>
-      <a href="#services" class="btn btn-outline">See Services</a>
+      <a href="services.html" class="btn btn-outline">See Services</a>
     </div>
   </div>
 </section>
@@ -323,30 +422,22 @@
 <div id="trust">
   <div class="trust-grid">
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <strong>No Fix, No Fee</strong>
       <span>You only pay if we solve it</span>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </div>
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <strong>We Come to You</strong>
       <span>In-home visits across the Lower Mainland</span>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-      </div>
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
       <strong>Plain Language</strong>
       <span>We explain what happened, clearly</span>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      </div>
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
       <strong>Local and Personal</strong>
       <span>A real person, not a big box store</span>
     </div>
@@ -358,128 +449,114 @@
   <div class="container">
     <div class="section-label">What We Help With</div>
     <h2>Services</h2>
-    <p style="color: var(--text-sm); max-width: 560px;">Whether it's a slow computer or setting up a new device, we handle it. Don't see your issue? Send us a request anyway.</p>
+    <p style="color: var(--text-sm); max-width: 560px;">Click any service to learn more. Don't see your issue? Send us a request anyway.</p>
 
     <div class="services-grid">
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
+      <div class="service-card" data-service="slow-computer">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <h3>Slow or Freezing Computer</h3>
-        <p>Cleanup, startup optimization, software updates, and performance tuning to get things running smoothly again.</p>
+        <p>Cleanup, startup optimization, updates, and performance tuning to get things running smoothly again.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+      <div class="service-card" data-service="virus">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Virus and Malware Removal</h3>
         <p>We find and remove threats, secure your device, and make sure it doesn't happen again.</p>
         <span class="nff-tag">No fix, no fee</span>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
+      <div class="service-card" data-service="device-setup">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
         <h3>New Device Setup and Transfer</h3>
         <p>New laptop, phone, or tablet? We set it up and move everything over from your old device.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
-        </div>
+      <div class="service-card" data-service="wifi">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg></div>
         <h3>WiFi Setup and Security</h3>
         <p>New router setup, dead spots, slow connection, or securing your home network.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        </div>
+      <div class="service-card" data-service="printer">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
         <h3>Printer Setup and Troubleshooting</h3>
         <p>Getting a printer to work shouldn't be this hard. We'll sort it out.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
+      <div class="service-card" data-service="account-recovery">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <h3>Email and Account Recovery</h3>
         <p>Locked out of Gmail, Outlook, Apple ID, or Facebook? We'll get you back in.</p>
         <span class="nff-tag">No fix, no fee</span>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+      <div class="service-card" data-service="scam">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Scam Protection Audit</h3>
-        <p>We review your accounts, security settings, and teach you how to spot scam calls, emails, and fake websites.</p>
+        <p>We review your accounts and security settings, and teach you how to spot scam calls and fake websites.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        </div>
+      <div class="service-card" data-service="video-calling">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
         <h3>Video Calling Setup</h3>
         <p>Get set up on Zoom, FaceTime, or Google Meet so you can connect with family and friends.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
-        </div>
+      <div class="service-card" data-service="smart-tv">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
         <h3>Smart TV and Streaming Setup</h3>
         <p>Netflix, Disney+, Apple TV, and more. We'll get everything set up and easy to use.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        </div>
+      <div class="service-card" data-service="photos">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
         <h3>Photo Backup and Organization</h3>
         <p>We'll back up your photos to the cloud or an external drive so they're safe and easy to find.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg>
-        </div>
+      <div class="service-card" data-service="smart-home">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg></div>
         <h3>Smart Home Device Setup</h3>
         <p>Ring doorbells, Nest thermostats, Alexa, and more. Set up and connected properly.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        </div>
+      <div class="service-card" data-service="password">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
         <h3>Password Manager Setup</h3>
         <p>Never forget a password again. We'll set you up with a simple, secure password manager and walk you through it.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        </div>
+      <div class="service-card" data-service="safety-training">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         <h3>Online Safety Training</h3>
-        <p>A friendly 1-hour session on how to spot scams, phishing emails, and suspicious links. Great for peace of mind.</p>
+        <p>A friendly 1-hour session on how to spot scams, phishing emails, and suspicious links.</p>
+        <div class="card-hint">Tap to learn more &rsaquo;</div>
       </div>
 
-      <div class="service-card" style="border-color: var(--blue); background: var(--blue-lt);">
-        <div class="service-icon" style="background: white;">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        </div>
+      <div class="service-card no-modal" style="border-color: var(--blue); background: var(--blue-lt);">
+        <div class="service-icon" style="background: white;"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
         <h3>Don't See Your Issue?</h3>
-        <p>Send us a request with your problem and we'll let you know if we can help, usually within 24 hours.</p>
+        <p>Send us a request and we'll let you know if we can help, usually within 24 hours.</p>
+        <a href="#contact" class="card-hint" style="text-decoration:none;">Send a request &rsaquo;</a>
       </div>
 
     </div>
 
-    <div class="out-of-scope">
-      <strong>Monthly peace-of-mind plan:</strong> For $35/month, we remotely check in on your computer once a month. We run updates, clear junk, and make sure everything is running well. No surprises.
+    <div class="maintenance-box">
+      <strong>Monthly Maintenance Plan:</strong> For $35/month, we remotely check in on your computer once a month. We run updates, clear out unnecessary files, and flag anything that needs attention before it becomes a problem.
     </div>
   </div>
 </section>
@@ -506,8 +583,8 @@
         </div>
       </div>
 
-      <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_next" value="https://aidancox8.github.io/IT-Support/thanks.html" />
         <div class="form-row">
           <div>
             <label for="name">Your Name</label>
@@ -537,7 +614,7 @@
             <option>Video calling setup</option>
             <option>Photo backup</option>
             <option>Smart home setup</option>
-            <option>Monthly check-in plan</option>
+            <option>Monthly maintenance plan</option>
             <option>Something else</option>
           </select>
         </div>
@@ -565,6 +642,174 @@
     <span style="margin-top: 8px;">© 2026 Tech Neighbour BC. All rights reserved.</span>
   </div>
 </footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">&#x2715;</button>
+    <div class="modal-icon" id="modal-icon"></div>
+    <h3 id="modal-title"></h3>
+    <p class="modal-desc" id="modal-desc"></p>
+    <ul class="modal-includes" id="modal-includes"></ul>
+    <div class="modal-footer">
+      <div>
+        <div class="modal-price" id="modal-price"></div>
+        <div id="modal-nff"></div>
+      </div>
+      <a href="#contact" class="modal-cta" id="modal-cta">Request This Service</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const serviceData = {
+    'slow-computer': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+      title: 'Slow or Freezing Computer',
+      desc: 'A slow computer is one of the most common and frustrating issues we see. Most of the time it can be fixed without replacing anything.',
+      includes: ['Remove unnecessary startup programs', 'Clear junk files and temporary data', 'Run system and driver updates', 'Check for malware affecting performance', 'Tune browser and settings for speed'],
+      price: 'From $65/hr',
+      nff: false
+    },
+    'virus': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      title: 'Virus and Malware Removal',
+      desc: 'Viruses, pop-ups, ransomware, and fake tech support warnings are all things we deal with regularly. We remove them completely and secure your device so it doesn\'t happen again.',
+      includes: ['Full malware and virus scan', 'Remove all detected threats', 'Check for any lingering damage', 'Secure browser and system settings', 'Advice on staying protected'],
+      price: '$80 flat rate',
+      nff: true
+    },
+    'device-setup': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
+      title: 'New Device Setup and Transfer',
+      desc: 'Getting a new device should be exciting, not stressful. We handle the whole setup and make sure everything from your old device moves over safely.',
+      includes: ['Initial device setup and account login', 'Transfer contacts, photos, and files', 'Install your apps and programs', 'Set up email and preferences', 'Walk you through the new device'],
+      price: '$100 flat rate',
+      nff: false
+    },
+    'wifi': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>',
+      title: 'WiFi Setup and Security',
+      desc: 'Whether you have a new router, dead spots in your home, or just a slow connection, we diagnose and fix it. We also make sure your network is properly secured.',
+      includes: ['Router setup and configuration', 'Diagnose and improve coverage', 'Secure network with strong password', 'Connect your devices', 'Check for interference issues'],
+      price: '$80 flat rate',
+      nff: false
+    },
+    'printer': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>',
+      title: 'Printer Setup and Troubleshooting',
+      desc: 'Printers have a reputation for being difficult. We handle setup, reconnection, driver issues, and wireless printing problems so you don\'t have to.',
+      includes: ['Install or reinstall printer drivers', 'Connect printer to your computer or network', 'Set up wireless printing', 'Test and confirm everything works', 'Fix paper feed or print quality issues'],
+      price: '$60 flat rate',
+      nff: false
+    },
+    'account-recovery': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+      title: 'Email and Account Recovery',
+      desc: 'Getting locked out of Gmail, Outlook, Apple ID, Facebook, or any other account is incredibly stressful. We work through the recovery process step by step.',
+      includes: ['Attempt account recovery through official channels', 'Set up backup email or phone for future access', 'Enable two-factor authentication', 'Help create a secure new password', 'Check for any unauthorized access'],
+      price: '$60 flat rate',
+      nff: true
+    },
+    'scam': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      title: 'Scam Protection Audit',
+      desc: 'Scammers increasingly target people through fake tech support calls, phishing emails, and suspicious pop-ups. This service helps you protect yourself and your information.',
+      includes: ['Review accounts for suspicious activity', 'Tighten privacy and security settings', 'Identify and remove suspicious software', 'Teach you how to spot common scams', 'Set up safer browsing habits'],
+      price: '$75 flat rate',
+      nff: false
+    },
+    'video-calling': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>',
+      title: 'Video Calling Setup',
+      desc: 'Stay connected with family and friends. We set up the video calling app of your choice and make sure your camera and microphone work properly.',
+      includes: ['Install and configure Zoom, FaceTime, or Google Meet', 'Test camera, microphone, and speakers', 'Walk you through making and receiving calls', 'Set up contacts for easy access', 'Troubleshoot any connection issues'],
+      price: '$60 flat rate',
+      nff: false
+    },
+    'smart-tv': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>',
+      title: 'Smart TV and Streaming Setup',
+      desc: 'Whether it\'s a new TV or streaming device, we get everything connected and working. Netflix, Disney+, Crave, Apple TV, and more.',
+      includes: ['Connect TV or streaming device to WiFi', 'Set up and log into streaming apps', 'Configure remote or voice control', 'Adjust picture and sound settings', 'Walk you through how to use everything'],
+      price: '$70 flat rate',
+      nff: false
+    },
+    'photos': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>',
+      title: 'Photo Backup and Organization',
+      desc: 'Your photos are irreplaceable. We make sure they are safely backed up to the cloud or an external drive, and help you find them easily.',
+      includes: ['Back up photos to Google Photos, iCloud, or external drive', 'Organize photos by date or album', 'Free up storage space on your device', 'Set up automatic backups going forward', 'Walk you through accessing your photos'],
+      price: '$75 flat rate',
+      nff: false
+    },
+    'smart-home': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg>',
+      title: 'Smart Home Device Setup',
+      desc: 'Ring doorbells, Nest thermostats, Alexa, Google Home, and more. We get them set up, connected, and easy to use.',
+      includes: ['Install and connect the device', 'Link to your home WiFi network', 'Set up the companion app on your phone', 'Configure preferences and schedules', 'Walk you through day-to-day use'],
+      price: '$80 flat rate',
+      nff: false
+    },
+    'password': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>',
+      title: 'Password Manager Setup',
+      desc: 'Using the same password everywhere is one of the biggest security risks. A password manager fixes this and makes logging in easier, not harder.',
+      includes: ['Set up a free and secure password manager', 'Import your existing passwords', 'Create strong passwords for key accounts', 'Install browser extension for easy login', 'Walk you through using it day to day'],
+      price: '$60 flat rate',
+      nff: false
+    },
+    'safety-training': {
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>',
+      title: 'Online Safety Training',
+      desc: 'A relaxed, friendly 1-hour session where we walk through the most common online threats and how to avoid them. Popular with families who want peace of mind for their parents.',
+      includes: ['How to spot phishing emails', 'Recognizing fake tech support calls', 'Identifying suspicious links and pop-ups', 'Safe online shopping and banking habits', 'What to do if something goes wrong'],
+      price: '$75 flat rate',
+      nff: false
+    }
+  };
+
+  const overlay = document.getElementById('modal-overlay');
+  const modalClose = document.getElementById('modal-close');
+
+  document.querySelectorAll('.service-card[data-service]').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.service;
+      const data = serviceData[key];
+      if (!data) return;
+
+      document.getElementById('modal-icon').innerHTML = data.icon;
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-desc').textContent = data.desc;
+
+      const list = document.getElementById('modal-includes');
+      list.innerHTML = data.includes.map(i => `<li>${i}</li>`).join('');
+
+      document.getElementById('modal-price').innerHTML = `${data.price}`;
+      const nffEl = document.getElementById('modal-nff');
+      nffEl.innerHTML = data.nff ? '<span class="modal-nff">No fix, no fee</span>' : '';
+
+      const cta = document.getElementById('modal-cta');
+      cta.href = '#contact';
+      cta.onclick = () => {
+        overlay.classList.remove('open');
+        document.getElementById('service').value = data.title;
+      };
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 
 </body>
 </html>

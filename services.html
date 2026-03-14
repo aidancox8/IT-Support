@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Tech Neighbour BC</title>
+  <meta name="description" content="Full list of in-home and remote tech support services across the Lower Mainland. No fix, no fee." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #1D4ED8;
+      --blue-lt: #EFF6FF;
+      --blue-dk: #1E3A8A;
+      --green:   #059669;
+      --green-lt:#ECFDF5;
+      --text:    #1F2937;
+      --text-sm: #6B7280;
+      --border:  #E5E7EB;
+      --bg-alt:  #F9FAFB;
+      --white:   #FFFFFF;
+      --radius:  10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: var(--text); background: var(--white); }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; }
+    .nav-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; color: var(--blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 6px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--blue-dk) !important; }
+
+    /* PAGE HEADER */
+    .page-header { background: linear-gradient(135deg, var(--blue-lt) 0%, var(--white) 60%); padding: 64px 24px; border-bottom: 1px solid var(--border); }
+    .page-header .container { max-width: 1000px; margin: 0 auto; }
+    .page-header p { color: var(--text-sm); font-size: 1.05rem; max-width: 520px; margin-top: 10px; }
+    .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.25; }
+    h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+    h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+
+    /* SERVICES LIST */
+    .services-body { padding: 64px 24px; }
+    .services-body .container { max-width: 1000px; margin: 0 auto; }
+
+    .service-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 60px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .service-block:last-child { border-bottom: none; }
+
+    .service-left { display: flex; flex-direction: column; gap: 14px; }
+    .service-header { display: flex; align-items: center; gap: 14px; }
+    .service-icon-lg {
+      width: 48px; height: 48px;
+      background: var(--blue-lt);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .service-icon-lg svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .service-left p { color: var(--text-sm); font-size: 0.95rem; }
+    .nff-tag { display: inline-block; background: var(--green-lt); color: var(--green); font-size: 0.78rem; font-weight: 600; padding: 3px 12px; border-radius: 999px; }
+    .price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .service-right { background: var(--bg-alt); border-radius: var(--radius); padding: 24px; }
+    .includes-list { list-style: none; }
+    .includes-list li { font-size: 0.9rem; color: var(--text-sm); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+    .includes-list li:last-child { border-bottom: none; }
+    .includes-list li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    .scenarios { font-size: 0.88rem; color: var(--text-sm); font-style: italic; margin-top: 12px; }
+    .scenarios strong { font-style: normal; color: var(--text); display: block; margin-bottom: 4px; font-size: 0.85rem; }
+
+    /* CTA BANNER */
+    .cta-banner { background: var(--blue); color: var(--white); padding: 56px 24px; text-align: center; }
+    .cta-banner h2 { font-size: 1.6rem; color: var(--white); margin-bottom: 12px; }
+    .cta-banner p { color: rgba(255,255,255,0.8); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+    .btn-white { display: inline-block; background: var(--white); color: var(--blue); padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 1rem; text-decoration: none; transition: opacity 0.2s; }
+    .btn-white:hover { opacity: 0.9; }
+
+    /* FOOTER */
+    footer { background: var(--text); color: #9CA3AF; padding: 36px 24px; font-size: 0.875rem; text-align: center; }
+    footer a { color: #9CA3AF; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .footer-logo { color: var(--white); font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .service-block { grid-template-columns: 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <path d="M15 3L2 12.5V27H11V18.5H19V27H28V12.5L15 3Z" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M12.5 22.5a3.5 3.5 0 0 1 5 0" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M10.5 20.5a6.5 6.5 0 0 1 9 0" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" opacity="0.4"/>
+        <circle cx="15" cy="25" r="1.4" fill="#1D4ED8"/>
+      </svg>
+      Tech Neighbour BC
+    </a>
+    <ul class="nav-links">
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="pricing.html#about">About</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get Help</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h1>Services</h1>
+    <p>All services include a plain-language explanation of what happened and why. We don't just fix it and leave.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services-body">
+  <div class="container">
+
+    <!-- Slow Computer -->
+    <div class="service-block" id="slow-computer">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h2>Slow or Freezing Computer</h2>
+        </div>
+        <p>A slow computer is usually caused by too many startup programs, accumulated junk files, outdated software, or in some cases, malware. Most of the time it can be fixed without replacing anything.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          Your computer takes a long time to start up, programs freeze or crash, or everything just feels slower than it used to.
+        </div>
+        <div class="price-badge">From $65/hr</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Remove unnecessary startup programs</li>
+          <li>Clear junk files and temporary data</li>
+          <li>Run system and driver updates</li>
+          <li>Check for malware affecting performance</li>
+          <li>Tune browser and settings for speed</li>
+          <li>Test and confirm improvement before leaving</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Virus Removal -->
+    <div class="service-block" id="virus">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h2>Virus and Malware Removal</h2>
+        </div>
+        <p>Viruses, spyware, ransomware, and fake tech support pop-ups are all things we deal with regularly. We remove them completely and secure your device so it doesn't happen again.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You're seeing unexpected pop-ups, your browser has changed on its own, someone called claiming to be tech support, or your computer is behaving strangely.
+        </div>
+        <span class="nff-tag">No fix, no fee</span>
+        <div class="price-badge">$80 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Full malware and virus scan</li>
+          <li>Remove all detected threats</li>
+          <li>Check for any lingering damage</li>
+          <li>Secure browser and system settings</li>
+          <li>Install free antivirus protection if needed</li>
+          <li>Advice on staying safe going forward</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Device Setup -->
+    <div class="service-block" id="device-setup">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h2>New Device Setup and Transfer</h2>
+        </div>
+        <p>Getting a new device should be exciting, not stressful. We handle the full setup and make sure everything from your old device moves over safely, including photos, contacts, emails, and apps.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You have a new laptop, phone, or tablet and want to get it set up properly without losing anything from your old one.
+        </div>
+        <div class="price-badge">$100 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Initial device setup and account sign-in</li>
+          <li>Transfer contacts, photos, and important files</li>
+          <li>Install your apps and programs</li>
+          <li>Set up email and browser preferences</li>
+          <li>Connect to your home WiFi</li>
+          <li>Walk you through your new device before we leave</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WiFi -->
+    <div class="service-block" id="wifi">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg></div>
+          <h2>WiFi Setup and Security</h2>
+        </div>
+        <p>Whether you have a new router, dead spots in your home, a slow connection, or just want to make sure your network is properly secured, we handle all of it.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          Your internet is slow or keeps dropping, certain rooms have poor signal, you got a new router and can't get it working, or you're not sure if your network is secure.
+        </div>
+        <div class="price-badge">$80 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Router setup and configuration</li>
+          <li>Diagnose and improve signal coverage</li>
+          <li>Secure network with a strong password</li>
+          <li>Connect all your devices</li>
+          <li>Check for interference from neighboring networks</li>
+          <li>Recommend extenders or mesh systems if needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Printer -->
+    <div class="service-block" id="printer">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+          <h2>Printer Setup and Troubleshooting</h2>
+        </div>
+        <p>Printers have a well-earned reputation for being unreliable. We handle installation, wireless setup, driver problems, and anything else keeping you from printing.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          Your printer says it's offline, your computer won't find the printer, you have a new printer you can't get working, or print quality has changed.
+        </div>
+        <div class="price-badge">$60 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Install or reinstall printer drivers</li>
+          <li>Connect printer to your computer or home network</li>
+          <li>Set up wireless printing</li>
+          <li>Set as default printer</li>
+          <li>Test print to confirm everything works</li>
+          <li>Basic print quality troubleshooting</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Account Recovery -->
+    <div class="service-block" id="account-recovery">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <h2>Email and Account Recovery</h2>
+        </div>
+        <p>Getting locked out of an account is stressful and disorienting. We work through the official recovery process step by step and set things up to prevent it from happening again.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You forgot your password, your account was hacked, you can't access your email, or you're locked out of Apple ID, Facebook, or another account.
+        </div>
+        <span class="nff-tag">No fix, no fee</span>
+        <div class="price-badge">$60 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Attempt account recovery through official channels</li>
+          <li>Set up backup email or phone for future access</li>
+          <li>Enable two-factor authentication</li>
+          <li>Create a strong, memorable new password</li>
+          <li>Check for any unauthorized activity on the account</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scam Protection -->
+    <div class="service-block" id="scam">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h2>Scam Protection Audit</h2>
+        </div>
+        <p>Online scammers increasingly target people through fake tech support calls, phishing emails, and suspicious pop-ups. This service helps you understand the risks and protect yourself. A popular choice for families who want peace of mind for a parent.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You've received suspicious calls or emails, clicked something you weren't sure about, or just want to understand how to stay safe online.
+        </div>
+        <div class="price-badge">$75 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Review accounts for suspicious activity</li>
+          <li>Tighten privacy and security settings</li>
+          <li>Identify and remove suspicious software or extensions</li>
+          <li>Teach you how to recognize common scam tactics</li>
+          <li>Set up safer browsing habits</li>
+          <li>Guidance on what to do if something goes wrong</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Video Calling -->
+    <div class="service-block" id="video-calling">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <h2>Video Calling Setup</h2>
+        </div>
+        <p>Stay connected with family and friends no matter where they are. We set up the app, make sure your camera and microphone work, and walk you through making and receiving calls.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You want to video call family but aren't sure how to set it up, your camera or microphone isn't working, or you just want a confidence boost using the app.
+        </div>
+        <div class="price-badge">$60 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Install and configure Zoom, FaceTime, or Google Meet</li>
+          <li>Test camera, microphone, and speakers</li>
+          <li>Walk you through making and receiving calls</li>
+          <li>Set up contacts for easy access</li>
+          <li>Troubleshoot any connection issues</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Smart TV -->
+    <div class="service-block" id="smart-tv">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
+          <h2>Smart TV and Streaming Setup</h2>
+        </div>
+        <p>Getting the most out of your TV shouldn't require a manual. We get everything connected and working, and make sure you know how to use it without needing help every time.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You have a new TV or streaming device, you can't find your streaming apps, your TV lost its internet connection, or you're not sure how to switch between inputs.
+        </div>
+        <div class="price-badge">$70 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Connect TV or streaming device to WiFi</li>
+          <li>Set up and log into Netflix, Disney+, Crave, and others</li>
+          <li>Configure remote or voice control</li>
+          <li>Adjust picture and sound settings</li>
+          <li>Walk you through day-to-day use</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Photo Backup -->
+    <div class="service-block" id="photos">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <h2>Photo Backup and Organization</h2>
+        </div>
+        <p>Your photos are irreplaceable. We make sure they are safely backed up and easy to find, so you never have to worry about losing them if something happens to your device.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You have years of photos on a phone or computer that aren't backed up, your device is running out of storage, or you want an easy way to share photos with family.
+        </div>
+        <div class="price-badge">$75 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Back up photos to Google Photos, iCloud, or external drive</li>
+          <li>Organize photos by date or album</li>
+          <li>Free up storage space on your device</li>
+          <li>Set up automatic backups going forward</li>
+          <li>Walk you through accessing and sharing your photos</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Smart Home -->
+    <div class="service-block" id="smart-home">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg></div>
+          <h2>Smart Home Device Setup</h2>
+        </div>
+        <p>Smart home devices are useful, but setting them up can be frustrating. We handle the installation, connecting to your network, and the companion app so everything works as expected.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You have a new Ring doorbell, Nest thermostat, Alexa, Google Home, or similar device that you can't get working or connected.
+        </div>
+        <div class="price-badge">$80 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Install and physically mount the device if needed</li>
+          <li>Connect to your home WiFi network</li>
+          <li>Set up the companion app on your phone</li>
+          <li>Configure preferences and schedules</li>
+          <li>Walk you through day-to-day use</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Password Manager -->
+    <div class="service-block" id="password">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <h2>Password Manager Setup</h2>
+        </div>
+        <p>Using the same password everywhere, or writing them on sticky notes, is one of the most common security risks. A password manager solves this and actually makes logging in easier.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You reuse the same password, keep forgetting passwords, write them down somewhere, or want a more secure way to manage your accounts.
+        </div>
+        <div class="price-badge">$60 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>Set up a free and trusted password manager</li>
+          <li>Import your existing passwords where possible</li>
+          <li>Create strong passwords for your key accounts</li>
+          <li>Install browser extension for one-click login</li>
+          <li>Walk you through using it day to day</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Online Safety Training -->
+    <div class="service-block" id="safety-training">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <h2>Online Safety Training</h2>
+        </div>
+        <p>A relaxed, friendly 1-hour session walking through the most common online threats and exactly what to do if something looks suspicious. No tech background required.</p>
+        <div class="scenarios">
+          <strong>You might need this if:</strong>
+          You want to feel more confident online, a family member has had a scam attempt, or you've clicked something and aren't sure if it was safe.
+        </div>
+        <div class="price-badge">$75 flat rate</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included</h3>
+        <ul class="includes-list">
+          <li>How to spot phishing emails and fake websites</li>
+          <li>Recognizing fake tech support calls</li>
+          <li>Identifying suspicious links and pop-ups</li>
+          <li>Safe habits for online shopping and banking</li>
+          <li>What to do if something goes wrong</li>
+          <li>Q&A at the end for your specific questions</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Monthly Maintenance -->
+    <div class="service-block" id="maintenance">
+      <div class="service-left">
+        <div class="service-header">
+          <div class="service-icon-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h2>Monthly Maintenance Plan</h2>
+        </div>
+        <p>A simple monthly remote check-in to keep your computer running smoothly. We handle the maintenance so you don't have to think about it. Good for clients who want a consistent point of contact for anything that comes up.</p>
+        <div class="scenarios">
+          <strong>Good fit if:</strong>
+          You want your computer looked after regularly without having to remember to do updates, or you'd like ongoing support from someone who knows your setup.
+        </div>
+        <div class="price-badge">$35/month</div>
+      </div>
+      <div class="service-right">
+        <h3>What's Included Each Month</h3>
+        <ul class="includes-list">
+          <li>Remote check-in via screen share</li>
+          <li>Run Windows or macOS updates</li>
+          <li>Clear unnecessary files and free up space</li>
+          <li>Check startup programs and browser health</li>
+          <li>Flag anything that needs attention</li>
+          <li>Quick Q&A for any questions you have</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Don't see what you need?</h2>
+  <p>Send us a request and describe your issue. If we can help, we'll let you know within 24 hours.</p>
+  <a href="index.html#contact" class="btn-white">Send a Request</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Tech Neighbour BC</div>
+    <span>Serving the Lower Mainland, BC</span>
+    <span>
+      <a href="mailto:techneighbourbc@gmail.com">techneighbourbc@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+    <span style="margin-top: 8px;">© 2026 Tech Neighbour BC. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
