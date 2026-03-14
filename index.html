@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Neighbour BC | In-Home Tech Support – Richmond & Vancouver</title>
+  <meta name="description" content="Friendly, local tech support that comes to you. Serving Richmond and Vancouver. No fix, no fee." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:     #1D4ED8;
+      --blue-lt:  #EFF6FF;
+      --blue-dk:  #1E3A8A;
+      --green:    #059669;
+      --green-lt: #ECFDF5;
+      --text:     #1F2937;
+      --text-sm:  #6B7280;
+      --border:   #E5E7EB;
+      --bg-alt:   #F9FAFB;
+      --white:    #FFFFFF;
+      --radius:   10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-dk) !important; color: var(--white) !important; }
+
+    /* SECTIONS */
+    section { padding: 72px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+
+    /* HERO */
+    #hero {
+      background: linear-gradient(135deg, var(--blue-lt) 0%, var(--white) 60%);
+      padding: 96px 24px;
+    }
+    .hero-inner { max-width: 1000px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero-inner h1 { max-width: 680px; margin-bottom: 20px; }
+    .hero-inner p {
+      font-size: 1.15rem;
+      color: var(--text-sm);
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-dk); }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline:hover { background: var(--blue-lt); }
+
+    /* TRUST STRIP */
+    #trust { padding: 36px 24px; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .trust-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+    .trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .trust-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-lt);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .trust-item strong { font-size: 0.95rem; font-weight: 600; }
+    .trust-item span { font-size: 0.85rem; color: var(--text-sm); }
+
+    /* SERVICES */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); border-color: var(--blue); }
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-lt);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .service-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card p { font-size: 0.9rem; color: var(--text-sm); }
+    .nff-tag {
+      display: inline-block;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-top: 8px;
+    }
+    .out-of-scope {
+      margin-top: 28px;
+      padding: 18px 24px;
+      background: var(--blue-lt);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .out-of-scope strong { color: var(--blue); }
+
+    /* CONTACT */
+    #contact { background: var(--bg-alt); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 40px;
+      align-items: start;
+    }
+    .contact-info p { font-size: 0.95rem; color: var(--text-sm); margin-bottom: 20px; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+    .contact-detail svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .contact-detail a { color: var(--text); text-decoration: none; }
+    .contact-detail a:hover { color: var(--blue); }
+
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-lt);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    .form-note { font-size: 0.82rem; color: var(--text-sm); }
+    .btn-submit {
+      background: var(--blue);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    .btn-submit:hover { background: var(--blue-dk); }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: #9CA3AF;
+      padding: 36px 24px;
+      font-size: 0.875rem;
+      text-align: center;
+    }
+    footer a { color: #9CA3AF; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .footer-logo { color: var(--white); font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      section { padding: 56px 20px; }
+      .nav-links { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tech Neighbour BC</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="pricing.html#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get Help</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">No fix, no fee</div>
+    <h1>Tech help that comes to your door</h1>
+    <p>Friendly, patient, in-home tech support for Richmond and Vancouver residents. We fix the problem and explain it in plain language. No jargon, no confusion.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Send a Request</a>
+      <a href="#services" class="btn btn-outline">See Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div id="trust">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <strong>No Fix, No Fee</strong>
+      <span>You only pay if we solve it</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <strong>We Come to You</strong>
+      <span>In-home visits across Richmond and Vancouver</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <strong>Plain Language</strong>
+      <span>We explain what happened, clearly</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <strong>Local and Personal</strong>
+      <span>A real person, not a big box store</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">What We Help With</div>
+    <h2>Services</h2>
+    <p style="color: var(--text-sm); max-width: 560px;">Whether it's a slow computer or setting up a new device, we handle it. Don't see your issue? Send us a request anyway.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Slow or Freezing Computer</h3>
+        <p>Cleanup, startup optimization, software updates, and performance tuning to get things running smoothly again.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Virus and Malware Removal</h3>
+        <p>We find and remove threats, secure your device, and make sure it doesn't happen again.</p>
+        <span class="nff-tag">No fix, no fee</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>New Device Setup and Transfer</h3>
+        <p>New laptop, phone, or tablet? We set it up and move everything over from your old device.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+        </div>
+        <h3>WiFi Setup and Security</h3>
+        <p>New router setup, dead spots, slow connection, or securing your home network.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </div>
+        <h3>Printer Setup and Troubleshooting</h3>
+        <p>Getting a printer to work shouldn't be this hard. We'll sort it out.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>Email and Account Recovery</h3>
+        <p>Locked out of Gmail, Outlook, Apple ID, or Facebook? We'll get you back in.</p>
+        <span class="nff-tag">No fix, no fee</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Scam Protection Audit</h3>
+        <p>We review your accounts, security settings, and teach you how to spot scam calls, emails, and fake websites.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3>Video Calling Setup</h3>
+        <p>Get set up on Zoom, FaceTime, or Google Meet so you can connect with family and friends.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+        </div>
+        <h3>Smart TV and Streaming Setup</h3>
+        <p>Netflix, Disney+, Apple TV, and more. We'll get everything set up and easy to use.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Photo Backup and Organization</h3>
+        <p>We'll back up your photos to the cloud or an external drive so they're safe and easy to find.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg>
+        </div>
+        <h3>Smart Home Device Setup</h3>
+        <p>Ring doorbells, Nest thermostats, Alexa, and more. Set up and connected properly.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h3>Password Manager Setup</h3>
+        <p>Never forget a password again. We'll set you up with a simple, secure password manager and walk you through it.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Online Safety Training</h3>
+        <p>A friendly 1-hour session on how to spot scams, phishing emails, and suspicious links. Great for peace of mind.</p>
+      </div>
+
+      <div class="service-card" style="border-color: var(--blue); background: var(--blue-lt);">
+        <div class="service-icon" style="background: white;">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <h3>Don't See Your Issue?</h3>
+        <p>Send us a request with your problem and we'll let you know if we can help, usually within 24 hours.</p>
+      </div>
+
+    </div>
+
+    <div class="out-of-scope">
+      <strong>Monthly peace-of-mind plan:</strong> For $35/month, we remotely check in on your computer once a month. We run updates, clear junk, and make sure everything is running well. No surprises.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h2>Send a Request</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Describe your issue and we'll get back to you within 24 hours. Not sure if we can help? Send it anyway.</p>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:techneighbourbc@gmail.com">techneighbourbc@gmail.com</a>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Richmond and Vancouver, BC</span>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Response within 24 hours</span>
+        </div>
+      </div>
+
+      <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+          </div>
+        </div>
+        <div>
+          <label for="phone">Phone Number <span style="color: var(--text-sm); font-weight: 400;">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="604-555-0123" />
+        </div>
+        <div>
+          <label for="service">What do you need help with?</label>
+          <select id="service" name="service">
+            <option value="">Select a service...</option>
+            <option>Slow or freezing computer</option>
+            <option>Virus or malware removal</option>
+            <option>New device setup</option>
+            <option>WiFi issues</option>
+            <option>Printer problems</option>
+            <option>Email or account recovery</option>
+            <option>Scam protection</option>
+            <option>Smart TV or streaming setup</option>
+            <option>Video calling setup</option>
+            <option>Photo backup</option>
+            <option>Smart home setup</option>
+            <option>Monthly check-in plan</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Tell us more about the issue</label>
+          <textarea id="message" name="message" placeholder="Describe what's happening, as much or as little as you'd like..."></textarea>
+        </div>
+        <p class="form-note">We'll reply by email within 24 hours. If your issue is urgent, note that in your message.</p>
+        <button type="submit" class="btn-submit">Send Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Tech Neighbour BC</div>
+    <span>Serving Richmond and Vancouver, BC</span>
+    <span>
+      <a href="mailto:techneighbourbc@gmail.com">techneighbourbc@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+    <span style="margin-top: 8px;">© 2026 Tech Neighbour BC. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>

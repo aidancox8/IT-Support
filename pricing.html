@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing and About | Tech Neighbour BC</title>
+  <meta name="description" content="Clear, upfront pricing for in-home and remote tech support in Richmond and Vancouver." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:     #1D4ED8;
+      --blue-lt:  #EFF6FF;
+      --blue-dk:  #1E3A8A;
+      --green:    #059669;
+      --green-lt: #ECFDF5;
+      --text:     #1F2937;
+      --text-sm:  #6B7280;
+      --border:   #E5E7EB;
+      --bg-alt:   #F9FAFB;
+      --white:    #FFFFFF;
+      --radius:   10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-dk) !important; color: var(--white) !important; }
+
+    /* SECTIONS */
+    section { padding: 72px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-dk); }
+
+    /* PRICING */
+    #pricing { background: var(--white); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .pricing-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .pricing-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-lt);
+    }
+    .pricing-card .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-sm);
+      margin-bottom: 8px;
+    }
+    .pricing-card .featured-label { color: var(--blue); }
+    .price-main { font-size: 2rem; font-weight: 700; color: var(--text); }
+    .price-main span { font-size: 1rem; font-weight: 400; color: var(--text-sm); }
+    .price-note { font-size: 0.85rem; color: var(--text-sm); margin-top: 4px; margin-bottom: 16px; }
+    .price-list { list-style: none; }
+    .price-list li {
+      padding: 7px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+    .price-list li:last-child { border-bottom: none; }
+    .price-list li strong { color: var(--text); }
+    .travel-note {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: var(--text-sm);
+      text-align: center;
+    }
+
+    /* WHY US */
+    #why { background: var(--bg-alt); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .why-card { display: flex; flex-direction: column; gap: 10px; }
+    .why-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--blue-lt);
+      line-height: 1;
+    }
+    .why-card p { font-size: 0.92rem; color: var(--text-sm); }
+
+    /* ABOUT */
+    #about { background: var(--white); }
+    .about-inner { max-width: 680px; }
+    .about-inner p { color: var(--text-sm); margin-bottom: 14px; }
+    .about-inner p:last-child { margin-bottom: 0; }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: #9CA3AF;
+      padding: 36px 24px;
+      font-size: 0.875rem;
+      text-align: center;
+    }
+    footer a { color: #9CA3AF; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .footer-logo { color: var(--white); font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      section { padding: 56px 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Tech Neighbour BC</a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get Help</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">Clear and Upfront</div>
+    <h2>Pricing</h2>
+    <p style="color: var(--text-sm); max-width: 560px;">No hidden fees. You'll always know the cost before we start. If we can't fix it, you don't pay.</p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card featured">
+        <div class="label featured-label">In-Home Visit</div>
+        <div class="price-main">$50 <span>minimum</span></div>
+        <div class="price-note">Covers the first 30 minutes. $65/hr after.</div>
+        <ul class="price-list">
+          <li><span>Call-out (up to 30 min)</span><strong>$50</strong></li>
+          <li><span>Per hour after that</span><strong>$65/hr</strong></li>
+          <li><span>Billed in</span><strong>30-min increments</strong></li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="label">Remote Support</div>
+        <div class="price-main">$30 <span>minimum</span></div>
+        <div class="price-note">Covers the first 30 minutes. $50/hr after.</div>
+        <ul class="price-list">
+          <li><span>Remote session (up to 30 min)</span><strong>$30</strong></li>
+          <li><span>Per hour after that</span><strong>$50/hr</strong></li>
+          <li><span>Via screen share</span><strong>Easy setup</strong></li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="label">Flat Rate Services</div>
+        <div class="price-main" style="font-size: 1.3rem; padding-top: 6px;">Fixed price, no surprises</div>
+        <div class="price-note">Quoted before work begins</div>
+        <ul class="price-list">
+          <li><span>Virus and malware removal</span><strong>$80</strong></li>
+          <li><span>Computer tune-up</span><strong>$70</strong></li>
+          <li><span>New device setup</span><strong>$100</strong></li>
+          <li><span>Data backup setup</span><strong>$80</strong></li>
+          <li><span>Scam protection audit</span><strong>$75</strong></li>
+          <li><span>WiFi setup</span><strong>$80</strong></li>
+          <li><span>Account recovery</span><strong>$60</strong></li>
+          <li><span>Smart TV and streaming setup</span><strong>$70</strong></li>
+          <li><span>Password manager setup</span><strong>$60</strong></li>
+          <li><span>Online safety training (1 hr)</span><strong>$75</strong></li>
+          <li><span>Monthly check-in plan</span><strong>$35/mo</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="travel-note">Travel included within 20 km of Richmond, BC &nbsp;·&nbsp; +$20 travel fee beyond 20 km &nbsp;·&nbsp; All prices in CAD</p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-label">Why Tech Neighbour BC</div>
+    <h2>We do things differently</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>We come to you</h3>
+        <p>No loading up your equipment and driving somewhere. We show up at your home at a time that works for you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>No fix, no fee</h3>
+        <p>If we can't solve your problem, you don't owe us anything. We only get paid when the job is done.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Plain language, always</h3>
+        <p>We explain what went wrong and why, in plain English. You'll leave feeling informed, not confused.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h3>We follow up</h3>
+        <p>A couple of days after every visit, we check in to make sure everything is still working well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who You're Calling</div>
+    <h2>Hi, I'm Aidan</h2>
+    <div class="about-inner">
+      <p>I'm a local IT professional based in Richmond, BC. I started Tech Neighbour BC because I kept seeing the same thing: people struggling with technology and not having anyone patient enough to actually help them through it.</p>
+      <p>I work with a small trusted team, so whether I'm the one knocking on your door or one of my colleagues, you'll always get the same standard: friendly, unhurried support from someone who genuinely wants to help.</p>
+      <p>If you're not sure whether I can help with your issue, just reach out. The worst I can say is it's outside what we do, and I'll try to point you in the right direction either way.</p>
+      <a href="index.html#contact" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Tech Neighbour BC</div>
+    <span>Serving Richmond and Vancouver, BC</span>
+    <span>
+      <a href="mailto:techneighbourbc@gmail.com">techneighbourbc@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="terms.html">Terms and Conditions</a>
+    </span>
+    <span style="margin-top: 8px;">© 2026 Tech Neighbour BC. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
